@@ -19,7 +19,11 @@ export const scrapingInflearnCourses = (condition: {
     try {
       dispatch({ type: AlertType.ALERT, payload: { loading: true } });
 
-      if (!auth.token) return;
+      if (!auth.token)
+        return dispatch({
+          type: AlertType.ALERT,
+          payload: { loading: false, errMsg: '토큰이 유효하지 않습니다.' },
+        });
 
       const res = await axios.post(
         `${config.client_url}/api/courses/admin/inflearn`,
@@ -78,7 +82,11 @@ export const scrapingFastcampusCourses = (condition: {
     try {
       dispatch({ type: AlertType.ALERT, payload: { loading: true } });
 
-      if (!auth.token) return;
+      if (!auth.token)
+        return dispatch({
+          type: AlertType.ALERT,
+          payload: { loading: false, errMsg: '토큰이 유효하지 않습니다.' },
+        });
 
       const res = await axios.post(
         `${config.client_url}/api/courses/admin/fastcampus`,
