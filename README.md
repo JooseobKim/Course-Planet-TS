@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Course Planet - TypeScript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+MERN 스택(MongoDB / Express / React / Node) + Redux를 기반으로 만든 개인 프로젝트이며, Cloudinary와 AWS EC2 서비스를 이용하였습니다. Course Planet - TypeScript는 JS, JSX 문법으로만 작성되었던 기존 프로젝트를 TS, TSX 문법으로 변환한 버전이며 기능은 동일합니다. 또한 기존 프로젝트는 Heroku를 통해 배포 하였으나, TypeScript 변환 버전은 AWS EC2 서버를 통해 배포를 하였습니다. 추가로 HTTPS, DNS까지 적용을 해보았습니다.
 
-## Available Scripts
+## 기능
 
-In the project directory, you can run:
+#### [**기능 영상 재생 목록**](https://youtube.com/playlist?list=PLteiTo_UvJUBwK0_CbmUCfiE7IJ036FT1)
 
-### `npm start`
+- 이메일 인증을 통한 계정 등록하기
+- 소셜 로그인 (구글, 페이스북)
+- 유저 로그인, 로그인 유지, 로그아웃, 유저 삭제
+- 유저 프로필 업데이트
+- 이메일 인증을 통한 유저 비밀번호 재설정
+- 리뷰 작성하기, 수정하기, 삭제하기
+- 리뷰 좋아요 & 좋아요 취소
+- 내 리뷰 내역과 타 유저 리뷰 내역 불러오기
+- 강의 검색 및 데이터 불러오기
+- 인프런, 패스트캠퍼스 스크래핑 및 데이터 저장
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 주의사항
 
-### `npm test`
+- frontend/src/utils/config/config.ts 파일에 자신의 google client id와 facebook app id를 입력해주세요.
+- Heroku 배포 시 puppeteer 라이브러리를 사용할 경우 빌드팩을 설치하여야 합니다. 명령어는 아래 링크를 참고하시기 바랍니다.<br>
+  [puppeteer-heroku-buildpack](https://elements.heroku.com/buildpacks/jontewks/puppeteer-heroku-buildpack)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 설치
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 백엔드 모듈 설치
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm run backend-install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 프론트엔드 모듈 설치
 
-### `npm run eject`
+```bash
+npm run frontend-install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 실행
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 서버 실행 http://localhost:4250
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm run backend
+```
 
-## Learn More
+### 클라이언트 실행 http://localhost:3000
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run frontend
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 환경변수 설정
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| 환경변수                      | 설정 값                                 |
+| ----------------------------- | --------------------------------------- |
+| MONGODB_URL                   | 자신의 몽고DB 링크                      |
+| ACTIVATION_TOKEN_SECRET       | 무작위 시크릿 키                        |
+| ACTIVATION_TOKEN_SECRET_EXPIRESIN | 토큰 기간 + 문자열 'm', 예시: 5m    |
+| ACCESS_TOKEN_SECRET           | 무작위 시크릿 키                        |
+| ACCESS_TOKEN_SECRET_EXPIRESIN | 토큰 기간 + 문자열 'd', 예시: 1d         |
+| REFRESH_TOKEN_SECRET          | 무작위 시크릿 키                        |
+| REFRESH_TOKEN_SECRET_EXPIRESIN| 토큰 기간 + 문자열 'd', 예시: 3d         |
+| MAILING_SERVICE_CLIENT_ID     | OAuth 2.0 클라이언트 ID                 |
+| MAILING_SERVICE_CLIENT_SECRET | OAuth 2.0 클라이언트 보안 비밀          |
+| MAILING_SERVICE_REFRESH_TOKEN | OAuth 2.0 Playground 구글 메일 API 토큰 |
+| SENDER_EMAIL_ADDRESS          | OAuth 2.0 관리자 이메일                 |
+| PASSWORD_SECRET               | 무작위 시크릿 키                        |
+| CLIENT_URL                    | 배포 앱의 링크                          |
